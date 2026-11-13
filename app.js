@@ -1,7 +1,7 @@
 // Visual da Ilha — Posts Manager
 // App logic: State, Persistence, Calendar, Pipeline, Post Detail
 
-const STORAGE_KEY = 'visual_da_ilha_posts_v1';
+const STORAGE_KEY = 'visual_da_ilha_posts_v2';
 const DRIVE_CONCLUIDOS_URL = 'https://drive.google.com/drive/folders/12l5ZWnCQ4wW-nONnqXSlSq13bixfX82E';
 
 const STAGES = [
@@ -55,19 +55,18 @@ const INITIAL_POSTS = [
   {
     id: 'post-muito-alem',
     title: 'Post 01 - Muito além de uma hospedagem',
-    laminas: 6,
+    laminas: 5,
     status: 'agendado',
     scheduledDate: '2026-11-16T19:00',
     driveUrl: 'https://drive.google.com/drive/folders/1iSjJ1E2nsK-eMVHMfYpJNslRNIuHW0Fw',
     instagramUrl: 'https://instagram.com/visual_dailha',
-    caption: `Muito além de uma hospedagem. 🌿\n\nTem lugar que a gente chega e já sente: piscina ao ar livre, restaurante de frutos do mar, suítes e sobrados na mesma casa, e o mar a 50 metros.\n\nPousada e Restaurante Visual da Ilha — Av. Beira Mar, Balneário 07 de Setembro, Ilha Comprida - SP.\n\nReservas no WhatsApp: (13) 99606-0373\nhttps://wa.me/5513996060373 (link na bio)\n\n#ilhacomprida #pousadailhacomprida #litoralsulsp #pousadabeiramar #viagememfamilia`,
+    caption: `Muito além de uma hospedagem. 🌿\n\nTem lugar que a gente chega e já sente: piscina ao ar livre, restaurante de frutos do mar, suítes e sobrados na mesma casa, e o mar a 50 metros.\n\nPousada e Restaurante Visual da Ilha — Av. Beira Mar, Balneário 07 de Setembro, Ilha Comprida - SP.\n\nRestaurante aberto ao público todos os dias.\n\nReservas no WhatsApp: (13) 99606-0373\nLink do WhatsApp direto na bio! (linktr.ee/visual_dailha ou https://wa.me/5513996060373)\n\n#ilhacomprida #pousadailhacomprida #litoralsulsp #pousadabeiramar #viagememfamilia #restaurantebeiramar`,
     images: [
       './images/muito-alem/slide-01.webp',
       './images/muito-alem/slide-02.webp',
       './images/muito-alem/slide-03.webp',
       './images/muito-alem/slide-04.webp',
-      './images/muito-alem/slide-05.webp',
-      './images/muito-alem/slide-06.webp'
+      './images/muito-alem/slide-05.webp'
     ],
     completedAt: null
   },
