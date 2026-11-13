@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Visual da Ilha — Posts</title>
+  
+  <!-- PWA Meta -->
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="theme-color" content="#14463A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Visual Posts">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="./icons/favicon.png">
+
+  <!-- Google Fonts: Playfair Display + Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <img src="./icons/icon-192.png" alt="Logo" class="header-logo">
+        <div class="header-titles">
+          <h1>Visual da Ilha</h1>
+          <p>Operação de Posts</p>
+        </div>
+      </div>
+      <button class="header-action-btn" onclick="openNewPostModal()">
+        <span>+</span>
+        <span>Novo Post</span>
+      </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- PÁGINA 1: CALENDÁRIO DO MÊS -->
+      <section id="view-calendario" class="view-section active">
+        <div class="view-header">
+          <h2>Calendário Mensal</h2>
+          <p>Programação e distribuição dos posts no mês</p>
+        </div>
+
+        <div class="calendar-card">
+          <div class="calendar-nav">
+            <span id="calendar-month-title" class="calendar-month-title">Novembro 2026</span>
+            <div class="cal-nav-buttons">
+              <button id="btn-prev-month" class="btn-icon" aria-label="Mês anterior">‹</button>
+              <button id="btn-today" class="btn-today">Hoje</button>
+              <button id="btn-next-month" class="btn-icon" aria-label="Próximo mês">›</button>
+            </div>
+          </div>
+
+          <div class="calendar-grid">
+            <div class="cal-weekday">Dom</div>
+            <div class="cal-weekday">Seg</div>
+            <div class="cal-weekday">Ter</div>
+            <div class="cal-weekday">Qua</div>
+            <div class="cal-weekday">Qui</div>
+            <div class="cal-weekday">Sex</div>
+            <div class="cal-weekday">Sáb</div>
+          </div>
+          <div id="calendar-grid" class="calendar-grid" style="margin-top: 4px;">
+            <!-- Generated dynamically -->
+          </div>
+        </div>
+
+        <!-- Lista de posts do dia selecionado -->
+        <div id="day-posts-container" class="day-posts-section">
+          <!-- Populated by JavaScript -->
+        </div>
+      </section>
+
+      <!-- PÁGINA 2: PIPELINE EM COLUNAS -->
+      <section id="view-pipeline" class="view-section">
+        <div class="view-header">
+          <h2>Pipeline de Posts</h2>
+          <p>Fluxo das etapas de criação e publicação</p>
+        </div>
+
+        <!-- Tabs de navegação das etapas -->
+        <div id="pipeline-stage-tabs" class="pipeline-nav">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- Cards da etapa selecionada -->
+        <div id="pipeline-cards" class="pipeline-cards-container">
+          <!-- Populated by JavaScript -->
+        </div>
+      </section>
+
+      <!-- PÁGINA 3: DETALHE DO POST -->
+      <section id="view-detalhe" class="view-section">
+        <div class="view-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h2>Detalhes da Postagem</h2>
+            <p>Lâminas, links oficiais e legenda pronta</p>
+          </div>
+          <button class="btn-move" onclick="switchView('pipeline')" style="height: 32px;">
+            ← Voltar
+          </button>
+        </div>
+
+        <div id="detail-content">
+          <!-- Populated by JavaScript -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <button class="nav-tab-btn active" data-view="calendario">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/>
+        </svg>
+        <span>Calendário</span>
+      </button>
+
+      <button class="nav-tab-btn" data-view="pipeline">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 4h4v16H4V4zm6 0h4v16h-4V4zm6 0h4v16h-4V4z"/>
+        </svg>
+        <span>Pipeline</span>
+      </button>
+
+      <button class="nav-tab-btn" data-view="detalhe">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+        <span>Detalhe</span>
+      </button>
+    </nav>
+
+    <!-- Modal Form (Novo / Editar) -->
+    <div id="modal-overlay" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="modal-title">Novo Post</h3>
+          <button id="modal-close-btn" class="modal-close-btn" aria-label="Fechar">✕</button>
+        </div>
+
+        <form id="post-form">
+          <input type="hidden" id="form-post-id">
+
+          <div class="form-group">
+            <label for="form-title">Título do Post</label>
+            <input type="text" id="form-title" class="form-input" placeholder="Ex: Festa de fim de ano" required>
+          </div>
+
+          <div style="display: flex; gap: 10px;">
+            <div class="form-group" style="flex: 1;">
+              <label for="form-laminas">Qtd Lâminas</label>
+              <input type="number" id="form-laminas" class="form-input" min="1" max="20" value="1" required>
+            </div>
+            <div class="form-group" style="flex: 1.5;">
+              <label for="form-status">Etapa Inicial</label>
+              <select id="form-status" class="form-select">
+                <option value="ideia">Ideia</option>
+                <option value="producao">Em produção</option>
+                <option value="aprovacao">Aprovação</option>
+                <option value="agendado">Agendado</option>
+                <option value="publicado">Publicado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="form-date">Data e Hora Agendada</label>
+            <input type="datetime-local" id="form-date" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label for="form-drive">Link da Pasta no Google Drive</label>
+            <input type="url" id="form-drive" class="form-input" placeholder="https://drive.google.com/drive/folders/...">
+          </div>
+
+          <div class="form-group">
+            <label for="form-instagram">Link do Instagram</label>
+            <input type="url" id="form-instagram" class="form-input" placeholder="https://instagram.com/visual_dailha" value="https://instagram.com/visual_dailha">
+          </div>
+
+          <div class="form-group">
+            <label for="form-caption">Legenda do Post</label>
+            <textarea id="form-caption" class="form-textarea" placeholder="Digite ou cole o texto da legenda com hashtags..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="form-images">URLs das Imagens (uma por linha, opcional)</label>
+            <textarea id="form-images" class="form-textarea" style="min-height: 60px;" placeholder="./images/festa-fim-de-ano/slide-01.webp"></textarea>
+          </div>
+
+          <button type="submit" class="form-submit-btn">Salvar Post</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
